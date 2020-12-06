@@ -13,7 +13,7 @@ def read_in_file(file_name):
                 for item in fields:
                     field, value = item.split(':')
                     passport[field] = value.replace('\n', '')
-        return input_data
+    return input_data
 
 
 input_data = read_in_file('day4.txt')
@@ -33,14 +33,9 @@ def value_between_units(units, min_val, max_val, act_val):
 
 
 def position_value(positions, act_val):
-    for position_group in positions:
-        positions_to_check = position_group.split(',')
-        for position in positions_to_check:
-            if int(position) > len(act_val)-1:
-                return False
-            value_to_check = act_val[int(position)]
-            poss_values = positions[position_group]
-            if value_to_check not in poss_values:
+    for pg in positions:
+        for position in range(pg[0], pg[1]+1):
+            if len(act_val) > pg[1] and act_val[position] not in positions[pg]:
                 return False
     return True
 
@@ -64,12 +59,13 @@ fields = {
                    )
            ],
     'hcl': [partial(position_value,
-                   {'0': '#', '1,2,3,4,5,6': '1234567890abcdef',}
+                   {(0,0): '#', (1,6): '1234567890abcdef',}
                    ),
+            partial(length, 7, 7),
            ],
     'ecl': [partial(value, ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']),],
     'pid': [partial(position_value,
-                   {'0,1,2,3,4,5,6,7,8': '1234567890'},
+                   {(0,8): '1234567890'},
                    ),
             partial(length, 9, 9),
            ],
