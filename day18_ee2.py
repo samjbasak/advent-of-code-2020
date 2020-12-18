@@ -65,6 +65,7 @@ def make_list_into_length_three(sum_list):
         return make_list_into_length_three(sum_list)
 
 def deal_with_nested_lists(sum_list):
+    print(sum_list)
     for count, i in enumerate(sum_list):
         if isinstance(i, list):
             sum_list[count] = deal_with_nested_lists(i)
@@ -94,7 +95,6 @@ def return_value(sum_string):
     my_sum = tidy_up_sum(sum_string)
     my_sum = sort_brackets(my_sum)
     my_sum = deal_with_nested_lists(my_sum)
-    my_sum = make_list_into_length_three(my_sum)	
     return eval_list(my_sum)
     
 print(return_value('((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2'))
