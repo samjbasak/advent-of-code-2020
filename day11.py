@@ -1,4 +1,4 @@
-with open('day11_test2.txt') as f:
+with open('day11.txt') as f:
     input_data = f.read().split('\n')
     input_data = [list(i) for i in input_data if i != '']
 
@@ -83,15 +83,11 @@ vectors = [(-1, -1), (-1, 0), (-1, 1),
 #print(vectors)
 
 def check_if_seat_out_of_range(seat, seat_pattern=input_data):
-    print(seat, len(seat_pattern), len(seat_pattern[0]))
     if seat[0] < 0 or seat[0] >= len(seat_pattern):
-        print(False, 'a')
         return False
-    if seat[1] < 0 or seat[0] >= len(seat_pattern[0]):
-        print(False, 'b')
+    if seat[1] < 0 or seat[1] >= len(seat_pattern[0]):
         return False
     else:
-        print(True)
         return True
     
 

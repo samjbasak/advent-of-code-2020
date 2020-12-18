@@ -9,12 +9,12 @@ class GameOf4DLife:
                         self.active.add((countx,county,0,0))
 
     def possible_neighbours(self, cell):
-        poss_neighbours = [(cell[0]+x-1, cell[1]+y-1, cell[2]+z-1, cell[3]+w-1)
+        poss_neighbours = {(cell[0]+x-1, cell[1]+y-1, cell[2]+z-1, cell[3]+w-1)
                               for x in range(3)
                               for y in range(3)
                               for z in range(3)
                               for w in range(3)
-                              ]
+                              }
         poss_neighbours.remove(cell)
         return poss_neighbours
     
@@ -25,9 +25,10 @@ class GameOf4DLife:
                    ])
 
     def cells_in_world_to_check(self):
-        cells_to_check = []
+        cells_to_check = set()
         for cell in self.active:
-            cells_to_check.extend(self.possible_neighbours(cell))
+            cells_to_check |= self.possible_neighbours(cell)
+        cells_to_check |= self.active
         return cells_to_check
 
     def cell_iteration(self, cell):
