@@ -3,27 +3,6 @@ import time
 
 OPERATORS = ['+', '*']
 
-def find_matching_bracket(sum_string, open_p_index):
-    open_ps = 0
-    close_ps = 0
-    for count, i in enumerate(sum_string):
-        if i == ')' and open_ps == close_ps:
-            return open_p_index + count + 1
-        elif i == '(':
-            open_ps += 1
-        elif i == ')':
-            close_ps += 1
-
-    '''
-    open_brackets = 
-    close_p = sum_string.index(')')
-    if count('(') == 0:
-        return close_p + open_p_index
-    else:
-        find_index_next_bracket(sum_string[close_p+1:], open_p_index+close_p)
-    '''
-#print(find_matching_bracket('())', 0))
-
 def tidy_up_sum(string_sum):
     sum_list = []
     for i in string_sum:
